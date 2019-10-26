@@ -86,20 +86,22 @@ def send_to_all():
 
 
 def send_to_some(crit):
-    global contacts
-    crit = [i for i in crit.split()]
-    name = []
-    print(crit)
-    for i in range(len(crit)):
-        if crit[i][0].isupper():
-            name.append(crit[i])
-    print(name)
-    j = sheet[0].index('e-mail матери')
-    for i in range(1, len(sheet)):
-        if name[1][:len(name[1])-2] in sheet[i][sheet[0].index('Фамилия')]:
-            contacts.append(sheet[i][j])
-            break
-
+    try:
+        global contacts
+        crit = [i for i in crit.split()]
+        name = []
+        print(crit)
+        for i in range(len(crit)):
+            if crit[i][0].isupper():
+                name.append(crit[i])
+        print(name)
+        j = sheet[0].index('e-mail матери')
+        for i in range(1, len(sheet)):
+            if name[1][:len(name[1])-2] in sheet[i][sheet[0].index('Фамилия')]:
+                contacts.append(sheet[i][j])
+                break
+    except:
+        print('Ошибка в функции send_to_some')
 
 def auth_teachers():
     global sheet1
